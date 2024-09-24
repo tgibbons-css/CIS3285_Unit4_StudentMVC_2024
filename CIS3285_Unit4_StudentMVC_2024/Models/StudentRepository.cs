@@ -2,16 +2,18 @@
 {
     public class StudentRepository
     {
-        private List<StudentModel> myStudents;
+        static List<StudentModel> myStudents = new List<StudentModel>();
 
         public StudentRepository()
         {
-            myStudents = new List<StudentModel>
+            if (myStudents.Count == 0)
             {
-                new StudentModel { Id = 1, Name = "John Doe", Credits = 30 },
-                new StudentModel { Id = 2, Name = "Jane Smith", Credits = 45 },
-                new StudentModel { Id = 3, Name = "Sam Brown", Credits = 60 }
-            };
+                // if list is empty, initialize it
+                myStudents.Add(new StudentModel(1001, "Tom", 16));
+                myStudents.Add(new StudentModel(1002, "Jen", 8));
+                myStudents.Add(new StudentModel(1003, "Sabah", 16));
+            }
+
         }
 
         public List<StudentModel> getAllStudent()
@@ -27,6 +29,33 @@
         public StudentModel getOneStudent(int index)
         {
             return (myStudents[index]);
+        }
+        private StudentModel nullStudent()
+        {
+            // create a null student
+            StudentModel nullStudent = new StudentModel(-1, "Null Student", -999);
+            return nullStudent;
+        }
+
+        public void AddStudent(StudentModel newStudent)
+        {
+            myStudents.Add(newStudent);
+        }
+
+        public void DeleteStudent(int studentId)
+        {
+            // search the list for the student that matches the student ID
+            // DEBT --- Handle case when student id not found and index is -1
+            int index = myStudents.FindIndex(student => (student.Id == studentId));
+            myStudents.RemoveAt(index);
+        }
+
+        public void UpdateStudent(int studentId, StudentModel updatedStudent)
+        {
+            // search the list for the student that matches the student ID
+            // DEBT --- Handle case when student id not found and index is -1
+            int index = myStudents.FindIndex(student => (student.Id == studentId));
+            myStudents[index] = updatedStudent;
         }
     }
 }
