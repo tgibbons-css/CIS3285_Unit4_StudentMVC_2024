@@ -21,10 +21,23 @@
             return myStudents;
         }
 
+
         public StudentModel getStudentById(int id)
         {
-            return myStudents.Find(s => s.Id == id);
+            //Console.WriteLine("Getting student with id = " + id);
+            //return myStudents.Find(s => s.Id == id);
+            foreach (StudentModel student in myStudents)
+            {
+                if (student.Id == id)
+                {
+                    return (student);
+                }
+            }
+            // if you can't find the correct student return the first one
+            return (nullStudent());
         }
+
+
 
         public StudentModel getOneStudent(int index)
         {

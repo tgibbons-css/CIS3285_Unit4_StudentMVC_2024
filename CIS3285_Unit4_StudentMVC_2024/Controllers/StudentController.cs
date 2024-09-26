@@ -18,7 +18,7 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
         {
-            return View("Details", studentRepo.getOneStudent(id));
+            return View("Details", studentRepo.getStudentById(id));
         }
 
         // GET: StudentController/Create
@@ -88,7 +88,9 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
         {
             try
             {
-                return View("Delete", studentRepo.getStudentById(id));
+                studentRepo.DeleteStudent(id);
+                return RedirectToAction(nameof(Index));
+                //return View("Delete", studentRepo.getStudentById(id));
             }
             catch
             {
@@ -103,7 +105,7 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
         {
             try
             {
-                studentRepo.DeleteStudent(id);
+                //studentRepo.DeleteStudent(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
