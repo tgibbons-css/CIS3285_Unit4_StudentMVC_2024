@@ -7,7 +7,12 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
     public class StudentController : Controller
     {
         // Our link to the list of students in the Models folder
-        StudentRepository studentRepo = new StudentRepository();
+        IStudentCRUDInterface studentRepo = new StudentRepository();
+        
+        public StudentController()
+        {
+            // we are not currently using this constructor 
+        }
 
         // GET: StudentController
         public ActionResult Index()
