@@ -1,6 +1,6 @@
 ﻿namespace CIS3285_Unit4_StudentMVC_2024.Models
 {
-    public class StudentRepository
+    public class StudentRepository : IStudentCRUDInterface
     {
         static List<StudentModel> myStudents = new List<StudentModel>();
 
